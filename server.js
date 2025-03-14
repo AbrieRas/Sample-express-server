@@ -8,7 +8,7 @@ const ALLOWED_IP = process.env.ALLOWED_IP || '';
 // middleware
 const ipFilter = (req, res, next) => {
     // grab first ip from request headers
-    const clientIp2 = (req.headers['x-forwarded-for'])[0] || req.ip;
+    const clientIp2 = (req.headers['x-forwarded-for'] || req.ip).split(',')[0].trim();
     console.log('Client IP:', clientIp2);
     console.log('env ip: ', ALLOWED_IP);
     // const clientIp = req.ip || req.connection.remoteAddress;
