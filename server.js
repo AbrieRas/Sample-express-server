@@ -8,11 +8,8 @@ const ALLOWED_IP = process.env.ALLOWED_IP || '';
 // middleware
 const ipFilter = (req, res, next) => {
     // grab first ip from request headers
-    const clientIp2 = (req.headers['x-forwarded-for'] || req.ip).split(',')[0].trim();
-    console.log('Client IP:', clientIp2);
-    console.log('env ip: ', ALLOWED_IP);
-    // const clientIp = req.ip || req.connection.remoteAddress;
-    if (clientIp2 === ALLOWED_IP) {
+    const clientIp = (req.headers['x-forwarded-for'] || req.ip).split(',')[0].trim();
+    if (clientIp === ALLOWED_IP) {
         next();
     } else {
         res.status(403).send('Access denied');
