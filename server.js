@@ -7,6 +7,8 @@ const ALLOWED_IP = process.env.ALLOWED_IP || '';
 
 // middleware
 const ipFilter = (req, res, next) => {
+    console.log('req ip: ', req.ip);
+    console.log('env ip: ', ALLOWED_IP);
     const clientIp = req.ip || req.connection.remoteAddress;
     if (clientIp === ALLOWED_IP) {
         next();
