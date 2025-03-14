@@ -11,7 +11,7 @@ const ipFilter = (req, res, next) => {
     console.log('Client IP:', clientIp2);
     console.log('env ip: ', ALLOWED_IP);
     // const clientIp = req.ip || req.connection.remoteAddress;
-    if (clientIp === clientIp2) {
+    if (clientIp2 === ALLOWED_IP) {
         next();
     } else {
         res.status(403).send('Access denied');
